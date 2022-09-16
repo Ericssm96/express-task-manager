@@ -44,12 +44,12 @@ const updateTask = async (req, res) => {
     })
 
     if(!task){
-      return res.status(404).json({message: `Could not find task with id ${taskID}.`})
+      return res.status(404).json({msg: `Could not find task with id ${taskID}.`})
     }
 
     res.status(200).json({task});
   } catch(err){
-
+    res.status(500).json({msg: "Cannot set this value."})
   }
 }
 
@@ -59,12 +59,12 @@ const deleteTask = async (req, res) => {
     const task = await Task.findOneAndDelete({_id: taskID});
 
     if(!task){
-      return res.status(404).json({message: `No item with id ${taskID} found.`})
+      return res.status(404).json({msg: `No item with id ${taskID} found.`})
     }
 
     res.status(200).json({task});
   } catch (err) {
-    res.status(500).json({message: err})
+    res.status(500).json({msg: err})
   }
 }
 
